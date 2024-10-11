@@ -28,4 +28,32 @@ if price_data:
         f.write(f"Price: {price_value}, Currency: {currency_value}\n")
 else:
     print("No price data found.")
+# Getting the location data
+location_data = soup.find('span', {"class": ["adPage__aside__address-feature__text"]})
+location_data = location_data.get_text(strip=True)
+f.write(f"Location: {location_data}\n")
+
+# Fourth task, scrapping links from the URL
+seen_links = set()
+product_names = set()
+product_links = soup.find_all('a', {"class": "js-item-ad"})
+for product_link in product_links:
+    product_name = product_link.get_text(strip=True)
+    link = product_link.get('href')
+
+    # Creating the full link from relative links
+    if link.startswith('/'):
+        link = "https://999.md" + link
+
+    # Appending to the set if there's no duplicates
+    if link not in seen_links:
+        seen_links.add(link)
+    if product_name not in product_names and product_name != '':
+        product_names.add(product_name)
+
+# Writing the data to the file
+for name, link in zip(product_names, seen_links):
+    f.write(f"Product name: {name}, Product link: {link}\n")
+
 f.close()
+
