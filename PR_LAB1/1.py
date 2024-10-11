@@ -22,9 +22,22 @@ price_data = soup.find('ul', {"class": ["adPage__content__price-feature__prices"
 if price_data:
     prices = price_data.find_all('span', {"class": ["adPage__content__price-feature__prices__price__value"]})
     currencies = price_data.find_all('span', {"class": ["adPage__content__price-feature__prices__price__currency"]})
+    numeric = '0123456789'
+    standard_currency = ['€', '$', 'lei']
     for price, currency in zip(prices, currencies):
         price_value = price.get_text()
         currency_value = currency.get_text()
+        # Error handling to ensure that the currency value is an int
+        # and that the currency type is only euro, dollars & lei.
+        for ch in price_value:
+            if ch not in numeric:
+                price_value = price_value.replace(ch, '')
+        try:
+            price_value = int(price_value)
+        except:
+            price_value = "Error"
+        if currency not in standard_currency:
+            currency = "Error"
         f.write(f"Price: {price_value}, Currency: {currency_value}\n")
 else:
     print("No price data found.")
@@ -54,6 +67,8 @@ for product_link in product_links:
 # Writing the data to the file
 for name, link in zip(product_names, seen_links):
     f.write(f"Product name: {name}, Product link: {link}\n")
+
+
 
 f.close()
 
