@@ -47,6 +47,71 @@ def is_in_price_range(product, price_range_id):
     return product.get('price-range') == price_range_id
 
 
+def serialize_json(data):
+    # Function to serialize dictionaries
+    def dict_to_json(dictionary, in_list=False):
+        json_str = '{\n'
+        for i, (key, value) in enumerate(dictionary.items()):
+            json_str += f'  "{key}": "{value}"'
+            if i < len(dictionary) - 1:
+                json_str += ',\n'
+        if not in_list:
+            json_str += '\n}'
+        else:
+            json_str += '\n }'
+        return json_str
+
+    # Function to serialize dictionary lists
+    def list_to_json(dictonary_list):
+        json_str = '[\n'
+        for i, item in enumerate(dictonary_list):
+            json_str += ' ' + dict_to_json(item, True)
+            if i < len(dictonary_list) - 1:
+                json_str += ',\n'
+            else:
+                json_str += ' '
+        json_str += '\n]'
+        return json_str
+
+    if isinstance(data, dict):
+        return dict_to_json(data)
+    elif isinstance(data, list):
+        return list_to_json(data)
+    else:
+        raise Exception("Error: Unsupported data type when serializing to json.")
+    
+
+def serialize_xml(data):
+    # Function to serialize dictionaries
+    def dict_to_xml(data):
+        xml_str = '<product_data>\n'
+        xml_str += '\t<filtered_products>\n'
+
+        filtered_products = data['filtered_products']
+        for product in filtered_products:
+            xml_str += "\t\t<product>\n"
+
+            xml_str += f"\t\t\t<product_listing>{product['product_listing']}</product_listing>\n"
+            xml_str += f"\t\t\t<url>{product['url']}</url>\n"
+            xml_str += f"\t\t\t<title>{product['title']}</title>\n"
+            xml_str += f"\t\t\t<price>{product['price']}</price>\n"
+            xml_str += f"\t\t\t<currency>{product['currency']}</currency>\n"
+            xml_str += f"\t\t\t<location>{product['location']}</location>\n"
+            xml_str += f"\t\t\t<price-range>{product['price-range']}</price-range>\n"
+
+        xml_str += '\t</filtered_products>\n'
+        xml_str += f"\t<filtered_products_sum>{data['filtered_products_sum']}</filtered_products_sum>\n"
+        xml_str += f"\t<timestamp>{data['timestamp']}</timestamp>\n"
+        xml_str += '</product_data>'
+
+        return xml_str
+    
+    if isinstance(data, dict):
+        return dict_to_xml(data)
+    else:
+        raise Exception("Error: Unsupported data type when serializing to xml.")
+
+
 # Second task, getting the html page using a get request
 url = "https://999.md/ro/87872146"
 response = requests.get(url)
@@ -128,10 +193,14 @@ for i, (name, link) in enumerate(link_dictionary.items()):
         if flag == 0:
             f.write(f"Price: Negotiable|N/A\n")
             temp_dict["price"] = "Negotiable|N/A"
+            f.write(f"Currency: N/A\n")
+            temp_dict["currency"] = "N/A"
 
     else:
         f.write(f"Price: Negotiable|N/A\n")
         temp_dict["price"] = "Negotiable|N/A"
+        f.write(f"Currency: N/A\n")
+        temp_dict["currency"] = "N/A"
 
     # Getting the location data
     location_data = soup.find('span', {"class": ["adPage__aside__address-feature__text"]})
@@ -171,6 +240,15 @@ except ValueError:
     print("Invalid data format.")
 
 print(filtered_products_results)
-
 f.close()
+
+f = open("serialize_json", 'w')
+f.write(serialize_json(filtered_products_results))
+f.close()
+
+f = open("serialize_xml", 'w')
+f.write(serialize_xml(filtered_products_results))
+f.close()
+
+# print(serialize_json(temp_dict_list))
 

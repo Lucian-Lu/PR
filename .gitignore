@@ -1,3 +1,11 @@
-/html_response
+# Venv
 /PR/
+
+# Created files
+/html_response
 /scrapped_data.txt
+/serialize_json
+/serialize_xml
+
+# VSCode Cache
+/PR_LAB1/__pycache__
