@@ -99,11 +99,12 @@ def serialize_xml(data):
             xml_str += f"\t\t\t<currency>{product['currency']}</currency>\n"
             xml_str += f"\t\t\t<location>{product['location']}</location>\n"
             xml_str += f"\t\t\t<price-range>{product['price-range']}</price-range>\n"
+            xml_str += '\t\t</product>'
 
         xml_str += '\t</filtered_products>\n'
         xml_str += f"\t<filtered_products_sum>{data['filtered_products_sum']}</filtered_products_sum>\n"
         xml_str += f"\t<timestamp>{data['timestamp']}</timestamp>\n"
-        xml_str += '</product_data>'
+        xml_str += '</product>'
 
         return xml_str
     
