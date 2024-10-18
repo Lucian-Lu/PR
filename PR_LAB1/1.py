@@ -1,7 +1,8 @@
-import requests
+# import requests
 from bs4 import BeautifulSoup
 import functools
-from datetime import datetime
+from datetime import datetime, timezone
+import socket, ssl
 
 def get_eur_price(price_currency_pair):
     numeric = '0123456789'
@@ -112,14 +113,47 @@ def serialize_xml(data):
         raise Exception("Error: Unsupported data type when serializing to xml.")
 
 
+# Seventh task, using sockets instead of requests library
+def send_https_request(host, path):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)   
+    # Wrapping the socket for HTTPS connection
+    s_socket = ssl.wrap_socket(sock)
+    
+    try:
+        # Connecting to the server on the https port
+        s_socket.connect((host, 443))
+        request = f"GET {path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\n\r\n"
+        s_socket.sendall(request.encode())
+        
+        # Receive the response in chunks
+        response = b""
+        while True:
+            chunk = s_socket.recv(4096)
+            if not chunk:
+                break
+            response += chunk
+        
+        response_str = response.decode('utf-8')
+        # Split the response into headers and body
+        header, _, body = response_str.partition("\r\n\r\n")
+        
+        return body
+    finally:
+        s_socket.close()
+
+
 # Second task, getting the html page using a get request
-url = "https://999.md/ro/87872146"
-response = requests.get(url)
-if response.status_code == 200:
-    print("GET request was successful.")
-else:
-    print(f"Error occurred while processing the request = {response.status_code}")
-html_response = response.text
+# url = "https://999.md/ro/87872146"
+# response = requests.get(url)
+# if response.status_code == 200:
+#     print("GET request was successful.")
+# else:
+#     print(f"Error occurred while processing the request = {response.status_code}")
+# html_response = response.text
+host = "999.md"
+path = "/ro/87872146"
+html_response = send_https_request(host, path)
+
 soup = BeautifulSoup(html_response, 'html.parser')
 f = open("html_response", 'w')
 
@@ -159,20 +193,25 @@ for i, (name, link) in enumerate(link_dictionary.items()):
 
     temp_dict = {}
     temp_dict["product_listing"] = i
-    temp_dict["url"] = url
+    temp_dict["url"] = link
     temp_dict["title"] = name
 
     f.write("Product listing #" + str(i) + '\n')
     f.write("Link = " + link + '\n')
     f.write("Product name = " + name + '\n')
 
-    response = requests.get(link)
-    if response.status_code == 200:
-        print("GET request was successful.")
-    else:
-        print(f"Error occurred while processing the request = {response.status_code}")
+    # response = requests.get(link)
+    # if response.status_code == 200:
+    #     print("GET request was successful.")
+    # else:
+    #     print(f"Error occurred while processing the request = {response.status_code}")
     
-    html_response = response.text
+    # html_response = response.text
+
+    host, path = link.split("://")[-1].split("/", 1)
+    path = "/" + path if path else ""
+    html_response = send_https_request(host, path)
+
     soup = BeautifulSoup(html_response, 'html.parser')
     price_data = soup.find('ul', {"class": ["adPage__content__price-feature__prices"]})
 
@@ -232,13 +271,16 @@ try:
         filtered_products_results = {
             "filtered_products": filtered_products,
             "filtered_products_sum": filtered_products_sum,
-            "timestamp": datetime.now().isoformat()
+            "timestamp": datetime.now(timezone.utc).isoformat()
         }
         # print('Sum of the products in price range[' + str(price_range_id) + '] = ' + str(filtered_products_sum))
 
 except ValueError:
     print("Invalid data format.")
 
+print(temp_dict_list)
+
+# Eighth task, serializing to json and xml
 print(filtered_products_results)
 f.close()
 
