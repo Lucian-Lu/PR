@@ -6,6 +6,7 @@
 /scrapped_data.txt
 /serialize_json
 /serialize_xml
+/custom_serialize
 
 # VSCode Cache
 /PR_LAB1/__pycache__

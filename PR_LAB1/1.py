@@ -141,6 +141,127 @@ def send_https_request(host, path):
     finally:
         s_socket.close()
 
+# Ninth task - custom serialization/deserialization
+# Custom serialization - available data types:
+# L = list; D = dictionary; K = key; V = value; I = integer; F = float; N = none; O = other
+def custom_serialize(data):
+    # Serializing dictionaries
+    if isinstance(data, dict):
+        serialized_dict = "D:\n"
+        for key, value in data.items():
+            serialized_dict += f"\t\tK:{key}|V:{custom_serialize(value)}\n"
+        serialized_dict += "\t/D"
+        return serialized_dict
+    
+    # Serializing lists
+    elif isinstance(data, list):
+        serialized_list = "L:\n"
+        for item in data:
+            serialized_list += f"\t{custom_serialize(item)}\n"
+        serialized_list += "/L"
+        return serialized_list
+    
+    # Serializing basic data types
+    elif isinstance(data, str):
+        return f"S({data})"
+    elif isinstance(data, int):
+        return f"I({data})"
+    elif isinstance(data, float):
+        return f"F({data})"
+    elif data is None:
+        return "N"
+    else:
+        return f"O({str(data)})"
+
+
+def custom_deserialize(serialized):
+    stack = []
+    current_dict = None
+    current_list = None
+    # Splitting each line
+    lines = serialized.strip().splitlines()
+
+    for line in lines:
+        # Remove whitespaces
+        line = line.strip()
+
+        if line.startswith("L:"):
+            # Start of a new list
+            current_list = []
+            stack.append(current_list)
+        elif line.startswith("/L"):
+            # End of the current list
+            if len(stack) > 1:
+                top_list = stack.pop()
+                stack[-1].append(top_list)
+            current_list = None
+        elif line.startswith("D:"):
+            # Start of a new dictionary
+            current_dict = {}
+            stack.append(current_dict)
+        elif line.startswith("/D"):
+            # End of the current dictionary
+            if len(stack) > 1:
+                top_dict = stack.pop()
+                stack[-1].append(top_dict)
+            current_dict = None
+        elif line.startswith("K:"):
+            # Splitting & removing prefixes
+            key_value = line.split("|")
+            key = key_value[0][2:]
+            value = key_value[1][2:]
+            if current_dict is not None:
+                # Deserialize the value based on its type prefix
+                value_type = value[0]
+                if value_type == "S":
+                    deserialized_value = value[2:-1]
+                elif value_type == "I":
+                    deserialized_value = int(value[2:-1])
+                elif value_type == "F":
+                    deserialized_value = float(value[2:-1])
+                elif value_type == "N":
+                    deserialized_value = None
+                elif value_type == "O":
+                    deserialized_value = value[2:-1]
+                else:
+                    raise ValueError(f"Error: Invalid type prefix: {value_type}")
+
+                current_dict[key] = deserialized_value
+        else:
+            # Handle standalone values (basic types)
+            if line.startswith("S("):
+                value = line[2:-1]
+                if current_list is not None:
+                    current_list.append(value)
+                else:
+                    return value
+            elif line.startswith("I("):
+                value = int(line[2:-1])
+                if current_list is not None:
+                    current_list.append(value)
+                else:
+                    return value
+            elif line.startswith("F("):
+                value = float(line[2:-1])
+                if current_list is not None:
+                    current_list.append(value)
+                else:
+                    return value
+            elif line == "N":
+                if current_list is not None:
+                    current_list.append(None)
+                else:
+                    return None
+            elif line.startswith("O("):
+                value = line[2:-1]
+                if current_list is not None:
+                    current_list.append(value)
+                else:
+                    return value
+
+    # Return the root of the structure
+    return stack[0] if stack else None
+
 
 # Second task, getting the html page using a get request
 # url = "https://999.md/ro/87872146"
@@ -278,10 +399,7 @@ try:
 except ValueError:
     print("Invalid data format.")
 
-print(temp_dict_list)
-
 # Eighth task, serializing to json and xml
-print(filtered_products_results)
 f.close()
 
 f = open("serialize_json", 'w')
@@ -291,6 +409,16 @@ f.close()
 f = open("serialize_xml", 'w')
 f.write(serialize_xml(filtered_products_results))
 f.close()
+
+# Ninth task, custom serialization/deserialization
+f = open("custom_serialize", 'w')
+custom_serialized = custom_serialize (temp_dict_list)
+f.write(custom_serialized)
+
+custom_deserialized = custom_deserialize(custom_serialized)
+
+# print(custom_serialized)
+# print(custom_deserialized)
 
 # print(serialize_json(temp_dict_list))
 
