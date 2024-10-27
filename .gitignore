@@ -2,12 +2,13 @@
 /PR/
 
 # Created files
-/html_response
-/scrapped_data.txt
-/serialize_json
-/serialize_xml
-/custom_serialize
+/LAB1/html_response
+/LAB1/scrapped_data.txt
+/LAB1/serialize_json
+/LAB1/serialize_xml
+/LAB1/custom_serialize
 
 # VSCode Cache
 /LAB1/__pycache__
-/LAB2/__pycache__
+/LAB2/LAB2/__pycache__/
+/LAB2/.env

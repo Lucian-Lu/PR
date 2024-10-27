@@ -278,14 +278,14 @@ path = "/ro/87872146"
 html_response = send_https_request(host, path)
 
 soup = BeautifulSoup(html_response, 'html.parser')
-f = open("html_response", 'w')
+f = open("LAB1/html_response", 'w')
 
 # Writing the html content in a file for storage
 f.write(soup.prettify())
 f.close()
 
 # Fourth task, scrapping links from the URL
-f = open("scrapped_data.txt", "w")
+f = open("LAB1/scrapped_data.txt", "w")
 
 seen_links = set()
 product_names = set()
@@ -352,11 +352,23 @@ for i, (name, link) in enumerate(link_dictionary.items()):
                 f.write(f"Price: {eur_price}, Currency: €\n")
                 temp_dict["price"] = eur_price
                 temp_dict["currency"] = '€'
+                # Adding the price-listing to the file directly
+                if eur_price < 100:
+                    f.write(f"Price-range: 1\n")
+                elif eur_price < 500:
+                    f.write(f"Price-range: 2\n")
+                elif eur_price < 2500:
+                    f.write(f"Price-range: 3\n")
+                elif eur_price < 10000:
+                    f.write(f"Price-range: 4\n")
+                else:
+                    f.write(f"Price-range: 5\n")
         if flag == 0:
             f.write(f"Price: Negotiable|N/A\n")
             temp_dict["price"] = "Negotiable|N/A"
             f.write(f"Currency: N/A\n")
             temp_dict["currency"] = "N/A"
+            f.write(f"Price-range: 0\n")
 
     else:
         f.write(f"Price: Negotiable|N/A\n")
@@ -404,16 +416,16 @@ except ValueError:
 # Eighth task, serializing to json and xml
 f.close()
 
-f = open("serialize_json", 'w')
+f = open("LAB1/serialize_json", 'w')
 f.write(serialize_json(filtered_products_results))
 f.close()
 
-f = open("serialize_xml", 'w')
+f = open("LAB1/serialize_xml", 'w')
 f.write(serialize_xml(filtered_products_results))
 f.close()
 
 # Ninth task, custom serialization/deserialization
-f = open("custom_serialize", 'w')
+f = open("LAB1/custom_serialize", 'w')
 custom_serialized = custom_serialize (temp_dict_list)
 f.write(custom_serialized)
 

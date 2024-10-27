@@ -20,13 +20,8 @@ from .views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('delete/<str:search_string>/', delete, name='delete'),  
-    path('get/<str:search_string>/', get, name='get'),
-    path('put/<str:search_string>/', put, name='put'),          
+    path('delete/', delete, name='delete'),  
+    path('get/', get, name='get'),
+    path('put/', put, name='put'),   
+    path('post/', post, name='post')     
 ]
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('delete/<str:search_string>/', include("views.delete")),
-#     path('get/<str:search_string>/', include("views.get")),
-#     path('put/<str:search_string>/', include("views.put"))
-# ]
