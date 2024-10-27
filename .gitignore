@@ -9,4 +9,5 @@
 /custom_serialize
 
 # VSCode Cache
-/PR_LAB1/__pycache__
+/LAB1/__pycache__
+/LAB2/__pycache__

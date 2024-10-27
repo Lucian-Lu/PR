@@ -1,0 +1,52 @@
+Product listing #0
+Link = https://999.md/ro/87872146
+Product name = Chirie Spatiu Comercial / Showroom.
+Price: 5500, Currency: €
+Location: Moldova,  Chișinău mun.,  Chișinău,  Botanica,  str. Uzinelor 96/3
+Product listing #1
+Link = https://999.md/ro/88572486
+Product name = Оригинальные моторные масла toyota, lexus, bmw, mercedes benz, vw/audi, ford, nissan, mazda
+Price: 52, Currency: €
+Location: N/A
+Product listing #2
+Link = https://999.md/ro/70191687
+Product name = Angajăm meșter vulcanizare
+Price: Negotiable|N/A
+Currency: N/A
+Location: N/A
+Product listing #3
+Link = https://999.md/ro/87276494
+Product name = Оригинальнoe моторнoe маслo Toyota 0W-16. Лучшие цены в городе!
+Price: 624, Currency: €
+Location: N/A
+Product listing #4
+Link = https://999.md/ro/87863329
+Product name = 305/40R20-275/45R20  Pirelli/Tracmax! Hовая! Доставка!
+Price: 5500, Currency: €
+Location: Moldova,  Chișinău mun.,  Chișinău,  Botanica,  str. Uzinelor 96/3
+Product listing #5
+Link = https://999.md/ro/88535218
+Product name = Chirie Spatiu Comercial / Showroom - Comision 0%
+Price: 16, Currency: €
+Location: N/A
+Product listing #6
+Link = https://999.md/ro/87592413
+Product name = 225/45 R19 Bridgestone/Kumho. Летo. Доставка!
+Price: 58, Currency: €
+Location: N/A
+Product listing #7
+Link = https://999.md/ro/87139201
+Product name = 195/65 R15 anvelope de iarna Tracmax Noi - 990 lei
+Price: 121, Currency: €
+Location: N/A
+Product listing #8
+Link = https://999.md/ro/40545948
+Product name = 225/55 R16 Tracmax. (2024). Hовая! Летo! Доставка!
+Price: Negotiable|N/A
+Currency: N/A
+Location: N/A
+Product listing #9
+Link = https://999.md/ro/66388079
+Product name = Новые диски R18 нa BMW 3/4 series (F30/F32)
+Price: 427, Currency: €
+Location: N/A
