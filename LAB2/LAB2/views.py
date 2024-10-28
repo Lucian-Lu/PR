@@ -2,31 +2,52 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import connections
 from django.db.utils import OperationalError
+import json
+import xml.etree.ElementTree as ET
+import os
 
 
 @csrf_exempt
-def get(request):
+def get(request, search_string):
     if request.method == 'GET':
-        # Getting the query parameter
-        product_id = request.GET.get('id')
-        if product_id:
-            try:
-                # Validating input
-                product_id = int(product_id)
+        # Establishing database connection
+        db_conn = connections['default']
+        try:
+            c = db_conn.cursor()
+            results_per_page = 5
+            offset = 0
 
-                # Establishing database connection
-                db_conn = connections['default']
-                try:
-                    c = db_conn.cursor()
-                except OperationalError:
-                    print(OperationalError)
-                else:
+            if search_string == 'all':
+                page = request.GET.get('page')
+                if page:
                     try:
+                        page = int(page)
+                        offset = results_per_page * page
+                    except ValueError:
+                        return HttpResponse("Invalid datatype for page parameter", status=400)
+
+                # Query to fetch all products with pagination
+                query = """SELECT * FROM products LIMIT %s OFFSET %s"""
+                c.execute(query, (results_per_page, offset))
+                results = c.fetchall()
+
+                # If no results, return a 404 response
+                if not results:
+                    return HttpResponse("No products found.", status=404)
+
+                return HttpResponse(results, status=200)
+
+            else:
+                # Handle case for specific product ID
+                product_id = request.GET.get('id')
+                if product_id:
+                    try:
+                        product_id = int(product_id)
+
                         # Checking if the product exists in the database
                         validation_query = """SELECT COUNT(*) FROM products WHERE product_listing = %s"""
                         c.execute(validation_query, (product_id,))
                         validated = c.fetchone()[0]
-                        c.fetchall()
 
                         if validated > 0:
                             # Getting the product with matching product_id
@@ -37,18 +58,19 @@ def get(request):
                             return HttpResponse(result, status=200)
                         else:
                             return HttpResponse("No matching product_id found in the database.", status=404)
-                    
-                    except OperationalError as e:
-                        print("Database operation failed: ", e)
-                    finally:
-                        c.close()
 
-            except ValueError:
-                return HttpResponse("Invalid Product ID parameter format.", status=400)
-        else:
-            return HttpResponse("Product ID parameter not provided.", status=400)
+                    except ValueError:
+                        return HttpResponse("Invalid Product ID parameter format.", status=400)
+                else:
+                    return HttpResponse("Product ID parameter not provided.", status=400)
+
+        except OperationalError as e:
+            print("Database operation failed: ", e)
+            return HttpResponse("Database error occurred.", status=500)
+        finally:
+            c.close()
     else:
-        return HttpResponse("Invalid request method.")
+        return HttpResponse("Invalid request method.", status=405)
     
 @csrf_exempt
 def post(request):
@@ -288,3 +310,96 @@ def put(request):
             return HttpResponse("Product ID parameter not provided.", status=400)
     else:
         return HttpResponse("Invalid request method.")
+
+
+def read_json_files(file_content):
+    try:
+        file_data = json.loads(file_content)
+        for item in file_data:
+            product_listing = item.get('product_listing')
+            link = item.get('link')
+            product_name = item.get('product_name')
+            price = item.get('price')
+            currency = item.get('currency')
+            location = item.get('location')
+            price_range = item.get('price_range')
+            insert_into_database((product_listing, link, product_name, price, currency, location, price_range))
+
+        
+        return None
+    except json.JSONDecodeError:
+            return HttpResponse("Invalid file format detected", status=400)
+
+
+def read_xml_files(file_content):
+    try:
+        root = ET.fromstring(file_content)
+
+        for product in root.findall('product'):
+            product_listing = product.find('product_listing').text
+            link = product.find('link').text
+            product_name = product.find('product_name').text
+            price = product.find('price').text
+            currency = product.find('currency').text
+            price_range = product.find('price_range').text
+            location = product.find('location').text
+            insert_into_database((product_listing, link, product_name, price, currency, location, price_range))
+        
+        return None
+    except ET.ParseError:
+        return HttpResponse("Error while parsing xml file.", status=400)
+
+
+def insert_into_database(values):
+    db_conn = connections['default']
+    try:
+        c = db_conn.cursor()
+    except OperationalError:
+        print(OperationalError)
+    else:
+        try:
+            # Validating to see if the data was already inserted in the database
+            validation_query = """SELECT COUNT(*) FROM products WHERE product_listing = %s"""
+            c.execute(validation_query, (values[0],))
+            validated = c.fetchone()[0]
+            c.fetchall()
+
+            # If validated, we insert it, otherwise we skip it
+            if validated == 0:
+                query = """INSERT INTO products(product_listing, url, title, price, currency, location, price_range) 
+                        VALUES (%s, %s, %s, %s, %s, %s, %s)"""
+
+                c.execute(query, values)
+                db_conn.commit()
+            else:
+                print(f"Product listing {values[0]} already exists, skipping insertion.")
+
+        except OperationalError as e:
+            print("Database operation failed: ", e)
+        finally:
+            # Closing the database connection
+            c.close()
+
+
+@csrf_exempt
+def upload(request):
+    if request.method == "POST":
+        if 'file' not in request.FILES:
+            return HttpResponse("No files were uploaded.", status=400)
+        for file in request.FILES.getlist('file'):
+            try:
+                file_content = file.read().decode('utf-8')
+                file_name = file.name
+                if os.path.splitext(file_name)[1] == '.json':
+                    read_json_files(file_content)
+                elif os.path.splitext(file_name)[1] == '.xml':
+                    read_xml_files(file_content)
+                else:
+                    return HttpResponse("File format not accepted.", status=400)
+            except json.JSONDecodeError:
+                return HttpResponse("Invalid file format detected", status=400)
+            
+            return HttpResponse("File successfully read and uploaded to the database")
+
+    return HttpResponse("Invalid request method used.", status=400)
+

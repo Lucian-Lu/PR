@@ -1,0 +1,20 @@
+<products>
+    <product>
+        <product_listing>10</product_listing>
+        <link>https://999.md/ro/87872146</link>
+        <product_name>Chirie Spatiu Comercial / Showroom.</product_name>
+        <price>5500</price>
+        <currency>€</currency>
+        <price_range>4</price_range>
+        <location>Moldova, Chișinău mun., Chișinău, Botanica, str. Uzinelor 96/3</location>
+    </product>
+    <product>
+        <product_listing>11</product_listing>
+        <link>https://999.md/ro/82963628</link>
+        <product_name>305/40R20-275/45R20 Pirelli/Tracmax! Hовая! Доставка!</product_name>
+        <price>39</price>
+        <currency>€</currency>
+        <price_range>1</price_range>
+        <location>N/A</location>
+    </product>
+</products>
