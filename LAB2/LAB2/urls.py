@@ -21,7 +21,8 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('delete/', delete, name='delete'),  
-    path('get/<str:search_string>/', get, name='get'),
+    path('get/', get, name='get'),
+    path('get/all/', get_all, name='get_all'),
     path('put/', put, name='put'),   
     path('post/', post, name='post'),
     path('upload/', upload, name='upload')

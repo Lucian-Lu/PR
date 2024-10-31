@@ -8,7 +8,50 @@ import os
 
 
 @csrf_exempt
-def get(request, search_string):
+def get(request):
+    if request.method == 'GET':
+        # Establishing database connection
+        db_conn = connections['default']
+        try:
+            c = db_conn.cursor()
+
+            # Handle case for specific product ID
+            product_id = request.GET.get('id')
+            if product_id:
+                try:
+                    product_id = int(product_id)
+
+                    # Checking if the product exists in the database
+                    validation_query = """SELECT COUNT(*) FROM products WHERE product_listing = %s"""
+                    c.execute(validation_query, (product_id,))
+                    validated = c.fetchone()[0]
+
+                    if validated > 0:
+                        # Getting the product with matching product_id
+                        query = """SELECT * FROM products WHERE product_listing = %s"""
+                        c.execute(query, (product_id,))
+                        result = c.fetchall()
+                        
+                        return HttpResponse(result, status=200)
+                    else:
+                        return HttpResponse("No matching product_id found in the database.", status=400)
+
+                except ValueError:
+                    return HttpResponse("Invalid Product ID parameter format.", status=400)
+            else:
+                return HttpResponse("Product ID parameter not provided.", status=400)
+
+        except OperationalError as e:
+            print("Database operation failed: ", e)
+            return HttpResponse("Database error occurred.", status=500)
+        finally:
+            c.close()
+    else:
+        return HttpResponse("Invalid request method.", status=400)
+    
+
+@csrf_exempt
+def get_all(request):
     if request.method == 'GET':
         # Establishing database connection
         db_conn = connections['default']
@@ -17,52 +60,25 @@ def get(request, search_string):
             results_per_page = 5
             offset = 0
 
-            if search_string == 'all':
-                page = request.GET.get('page')
-                if page:
-                    try:
-                        page = int(page)
-                        offset = results_per_page * page
-                    except ValueError:
-                        return HttpResponse("Invalid datatype for page parameter", status=400)
+            # Pagination handling
+            page = request.GET.get('page')
+            if page:
+                try:
+                    page = int(page)
+                    offset = results_per_page * page
+                except ValueError:
+                    return HttpResponse("Invalid datatype for page parameter", status=400)
 
-                # Query to fetch all products with pagination
-                query = """SELECT * FROM products LIMIT %s OFFSET %s"""
-                c.execute(query, (results_per_page, offset))
-                results = c.fetchall()
+            # Query to fetch all products with pagination
+            query = """SELECT * FROM products LIMIT %s OFFSET %s"""
+            c.execute(query, (results_per_page, offset))
+            results = c.fetchall()
 
-                # If no results, return a 404 response
-                if not results:
-                    return HttpResponse("No products found.", status=404)
+            # If no results, return a 404 response
+            if not results:
+                return HttpResponse("No products found.", status=400)
 
-                return HttpResponse(results, status=200)
-
-            else:
-                # Handle case for specific product ID
-                product_id = request.GET.get('id')
-                if product_id:
-                    try:
-                        product_id = int(product_id)
-
-                        # Checking if the product exists in the database
-                        validation_query = """SELECT COUNT(*) FROM products WHERE product_listing = %s"""
-                        c.execute(validation_query, (product_id,))
-                        validated = c.fetchone()[0]
-
-                        if validated > 0:
-                            # Getting the product with matching product_id
-                            query = """SELECT * FROM products WHERE product_listing = %s"""
-                            c.execute(query, (product_id,))
-                            result = c.fetchall()
-                            
-                            return HttpResponse(result, status=200)
-                        else:
-                            return HttpResponse("No matching product_id found in the database.", status=404)
-
-                    except ValueError:
-                        return HttpResponse("Invalid Product ID parameter format.", status=400)
-                else:
-                    return HttpResponse("Product ID parameter not provided.", status=400)
+            return HttpResponse(results, status=200)
 
         except OperationalError as e:
             print("Database operation failed: ", e)
@@ -70,8 +86,9 @@ def get(request, search_string):
         finally:
             c.close()
     else:
-        return HttpResponse("Invalid request method.", status=405)
-    
+        return HttpResponse("Invalid request method.", status=400)
+
+
 @csrf_exempt
 def post(request):
     if request.method == 'POST':
@@ -148,9 +165,9 @@ def post(request):
                     c.close()
 
 
-        return(HttpResponse("ok"))
+        return(HttpResponse("Post operation successful", status=200))
     else:
-        return HttpResponse("Invalid request method.")
+        return HttpResponse("Invalid request method.", status=400)
 
 
 @csrf_exempt
@@ -309,7 +326,7 @@ def put(request):
         else:
             return HttpResponse("Product ID parameter not provided.", status=400)
     else:
-        return HttpResponse("Invalid request method.")
+        return HttpResponse("Invalid request method.", status=400)
 
 
 def read_json_files(file_content):
@@ -323,10 +340,10 @@ def read_json_files(file_content):
             currency = item.get('currency')
             location = item.get('location')
             price_range = item.get('price_range')
+
+            # Inserting the tuple into the database
             insert_into_database((product_listing, link, product_name, price, currency, location, price_range))
 
-        
-        return None
     except json.JSONDecodeError:
             return HttpResponse("Invalid file format detected", status=400)
 
@@ -343,9 +360,10 @@ def read_xml_files(file_content):
             currency = product.find('currency').text
             price_range = product.find('price_range').text
             location = product.find('location').text
+
+            # Inserting the tuple into the database
             insert_into_database((product_listing, link, product_name, price, currency, location, price_range))
         
-        return None
     except ET.ParseError:
         return HttpResponse("Error while parsing xml file.", status=400)
 
@@ -384,12 +402,15 @@ def insert_into_database(values):
 @csrf_exempt
 def upload(request):
     if request.method == "POST":
+        # Checking if files were provided along with the request
         if 'file' not in request.FILES:
             return HttpResponse("No files were uploaded.", status=400)
+        # Iterating each file and checking their type
         for file in request.FILES.getlist('file'):
             try:
                 file_content = file.read().decode('utf-8')
                 file_name = file.name
+                # Executing the relevant function based on file extension
                 if os.path.splitext(file_name)[1] == '.json':
                     read_json_files(file_content)
                 elif os.path.splitext(file_name)[1] == '.xml':
@@ -399,7 +420,7 @@ def upload(request):
             except json.JSONDecodeError:
                 return HttpResponse("Invalid file format detected", status=400)
             
-            return HttpResponse("File successfully read and uploaded to the database")
+            return HttpResponse("File successfully read and uploaded to the database", status=200)
 
     return HttpResponse("Invalid request method used.", status=400)
 
