@@ -3,22 +3,21 @@ import select
 import os
 from django.core.management import execute_from_command_line
 import threading
+import time
 
 
 def start_chat_room():
     HEADER_LENGTH = 10
 
-    IP = "127.0.0.1"
+    IP = "0.0.0.0"
     PORT = 1234
-
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_socket.bind((IP, PORT))
     server_socket.listen()
     sockets_list = [server_socket]
     clients = {}
-
-    print(f'Listening for connections on {IP}:{PORT}...')
+    print(f'Listening for connections on {IP}:{PORT}...', flush=True)
 
     def receive_message(client_socket):
         try:
@@ -45,19 +44,19 @@ def start_chat_room():
                     continue
                 sockets_list.append(client_socket)
                 clients[client_socket] = user
-                print('Accepted new connection from {}:{}, username: {}'.format(*client_address, user['data'].decode('utf-8')))
+                print('Accepted new connection from {}:{}, username: {}'.format(*client_address, user['data'].decode('utf-8')), flush=True)
             # Otherwise, we accept client messages
             else:
                 message = receive_message(notified_socket)
                 if message is False:
                     # If the connection is closed, we remove the socket
-                    print('Closed connection from: {}'.format(clients[notified_socket]['data'].decode('utf-8')))
+                    print('Closed connection from: {}'.format(clients[notified_socket]['data'].decode('utf-8')), flush=True)
                     sockets_list.remove(notified_socket)
                     del clients[notified_socket]
                     continue
 
                 user = clients[notified_socket]
-                print(f'Received message from {user["data"].decode("utf-8")}: {message["data"].decode("utf-8")}')
+                print(f'Received message from {user["data"].decode("utf-8")}: {message["data"].decode("utf-8")}', flush=True)
                 # Sending the message over to the clients
                 for client_socket in clients:
                     if client_socket != notified_socket:
@@ -71,7 +70,9 @@ def start_chat_room():
 
 def start_django_server():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'LAB2.settings')
-    execute_from_command_line(['manage.py', 'runserver', '127.0.0.1:8000', '--noreload'])
+    port = 8000
+    print(f"Web server is running on {port}", flush=True)
+    execute_from_command_line(['manage.py', 'runserver', f'0.0.0.0:{port}', '--noreload'])
 
 if __name__ == "__main__":
     t1 = threading.Thread(target=start_django_server)

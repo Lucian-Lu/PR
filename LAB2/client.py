@@ -4,7 +4,6 @@ import sys
 import threading
 import time
 
-
 # Function to receive messages from the other clients
 def receive_messages(my_username):
     while True:
@@ -35,11 +34,18 @@ def receive_messages(my_username):
             print('Reading error: '.format(str(e)))
             sys.exit()
 
+
 def send_messages():
     while True:
         message = input('')
+        
         # If we have a message, we encode it and send it to the client socket
         if message:
+            # Check if the message is "exit" to disconnect
+            if message.lower() == "exit":
+                print("Exiting the chat...")
+                client_socket.close()
+                sys.exit()
             message = message.encode('utf-8')
             message_header = f"{len(message):<{HEADER_LENGTH}}".encode('utf-8')
             client_socket.send(message_header + message)
@@ -47,7 +53,6 @@ def send_messages():
 
 
 HEADER_LENGTH = 10
-
 IP = "127.0.0.1"
 PORT = 1234
 my_username = input("Username: ")
