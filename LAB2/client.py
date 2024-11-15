@@ -7,7 +7,7 @@ import time
 # Function to receive messages from the other clients
 def receive_messages(my_username):
     while True:
-        time.sleep(5)
+        time.sleep(1)
         try:
             # Getting the username from the server
             username_header = client_socket.recv(HEADER_LENGTH)

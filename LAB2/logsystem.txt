@@ -1,0 +1,595 @@
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Client exited.
+INFO:__main__:Client is reading from the file
+INFO:__main__:Client is writing to file
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('172.19.0.1', 56824)
+ERROR:__main__:Error handling client: cannot schedule new futures after interpreter shutdown
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('172.19.0.1', 64440)
+WARNING:__main__:Invalid command entered.
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 7
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Read from file executed successfully.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('172.19.0.1', 61166)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 0.1
+INFO:__main__:Read from file executed successfully; lines = []
+INFO:__main__:Sending read response: 
+INFO:__main__:Client disconnected.
+INFO:__main__:Accepted connection from ('172.19.0.1', 63916)
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 0.1
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 0.1
+INFO:__main__:Read from file executed successfully; lines = []
+INFO:__main__:Sending read response: 
+INFO:__main__:Client disconnected.
+INFO:__main__:Accepted connection from ('172.19.0.1', 58010)
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 0.1
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 0.1
+INFO:__main__:Read from file executed successfully; lines = []
+INFO:__main__:Sending read response: 
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('172.19.0.1', 56660)
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 0.1
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 0.1
+ERROR:__main__:Invalid conversion format for commands: yes. Error: invalid literal for int() with base 10: 'yes'
+INFO:__main__:Sending read response: 
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 47660)
+WARNING:__main__:Invalid command entered.
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 0.1
+INFO:__main__:Write to file function executed successfully.
+WARNING:__main__:Invalid command entered.
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 0.1
+INFO:__main__:Read from file executed successfully; lines = ['testtee']
+INFO:__main__:Sending read response: testtee
+WARNING:__main__:Invalid command entered.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 36860)
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 3
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 7
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Accepted connection from ('127.0.0.1', 46984)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 7
+INFO:__main__:Read from file executed successfully; lines = ['', 'teste', '', 'damn']
+INFO:__main__:Sending read response: 
+teste
+
+damn
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 4
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 1
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['', 'teste', '', 'damn', '10', '100f']
+INFO:__main__:Sending read response: 
+teste
+
+damn
+10
+100f
+INFO:__main__:Client disconnected.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 35284)
+INFO:__main__:Accepted connection from ('127.0.0.1', 32890)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 5
+INFO:__main__:Read from file executed successfully; lines = ['', 'teste', '', 'damn', '10']
+INFO:__main__:Sending read response: 
+teste
+
+damn
+10
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client disconnected.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 36480)
+INFO:__main__:Accepted connection from ('127.0.0.1', 35212)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 3
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 1
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['test', 'e', '', 'damn', '10']
+INFO:__main__:Sending read response: test
+e
+
+damn
+10
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 46324)
+INFO:__main__:Accepted connection from ('127.0.0.1', 41968)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 5
+INFO:__main__:Read from file executed successfully; lines = ['test', 'e', '', 'damn', '10']
+INFO:__main__:Sending read response: test
+e
+
+damn
+10
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 34624)
+INFO:__main__:Accepted connection from ('127.0.0.1', 42388)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 1
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 7
+INFO:__main__:Read operation waiting for writes to complete...
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read operation waiting for writes to complete...
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 3
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read operation waiting for writes to complete...
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 51082)
+INFO:__main__:Accepted connection from ('127.0.0.1', 51084)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 2
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read operation waiting for writes to complete...
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 41160)
+INFO:__main__:Accepted connection from ('127.0.0.1', 48410)
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 2
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 7
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['test', 'e', '', 'damn', '10']
+INFO:__main__:Sending read response: test
+e
+
+damn
+10
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 47104)
+INFO:__main__:Accepted connection from ('127.0.0.1', 47120)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 0.1
+INFO:__main__:Read from file executed successfully; lines = ['test', 'e', '', 'damn']
+INFO:__main__:Sending read response: test
+e
+
+damn
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 0.1
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 55506)
+INFO:__main__:Accepted connection from ('127.0.0.1', 44114)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 5
+INFO:__main__:Read from file executed successfully; lines = ['test', 'e', '', 'damn', '10']
+INFO:__main__:Sending read response: test
+e
+
+damn
+10
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 34394)
+INFO:__main__:Accepted connection from ('127.0.0.1', 34408)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 5
+ERROR:__main__:Error handling client: lock.release() takes no arguments (1 given)
+INFO:__main__:Client disconnected.
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 37638)
+INFO:__main__:Accepted connection from ('127.0.0.1', 37644)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 5
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['testetee', 'amn', '10', '100f', '101']
+INFO:__main__:Sending read response: testetee
+amn
+10
+100f
+101
+INFO:__main__:Client disconnected.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 37002)
+INFO:__main__:Accepted connection from ('127.0.0.1', 37016)
+WARNING:__main__:Invalid command entered.
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 3
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client disconnected.
+INFO:__main__:Accepted connection from ('127.0.0.1', 36728)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 6
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 3
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 1
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['testeteeee', 'ufhfrhfreifiref', 'tege', 'eeeee', 'teeee']
+INFO:__main__:Sending read response: testeteeee
+ufhfrhfreifiref
+tege
+eeeee
+teeee
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 6
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 2
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 4
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['testeteeee', 'ufhfrhfreifiref', 'tege', 'eeeee', 'teeee']
+INFO:__main__:Client disconnected.
+INFO:__main__:Sending read response: testeteeee
+ufhfrhfreifiref
+tege
+eeeee
+teeee
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 39180)
+INFO:__main__:Accepted connection from ('127.0.0.1', 39184)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 5
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['giureiugr', '', 'ufhfrhfreifiref', 'tege', 'eeeee']
+INFO:__main__:Sending read response: giureiugr
+
+ufhfrhfreifiref
+tege
+eeeee
+INFO:__main__:Client disconnected.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 40718)
+INFO:__main__:Accepted connection from ('127.0.0.1', 40730)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 7
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 5
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 38102)
+INFO:__main__:Accepted connection from ('127.0.0.1', 56098)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 4
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:websockets.server:server listening on 0.0.0.0:1234
+DEBUG:websockets.server:= connection is CONNECTING
+DEBUG:websockets.server:< GET / HTTP/1.1
+DEBUG:websockets.server:< Host: 127.0.0.1:1234
+DEBUG:websockets.server:< Upgrade: websocket
+DEBUG:websockets.server:< Connection: Upgrade
+DEBUG:websockets.server:< Sec-WebSocket-Key: r4a7UO7WU0Q216ouCBOjNg==
+DEBUG:websockets.server:< Sec-WebSocket-Version: 13
+DEBUG:websockets.server:< Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+DEBUG:websockets.server:< User-Agent: Python/3.10 websockets/14.1
+DEBUG:websockets.server:> HTTP/1.1 101 Switching Protocols
+DEBUG:websockets.server:> Date: Fri, 15 Nov 2024 10:35:11 GMT
+DEBUG:websockets.server:> Upgrade: websocket
+DEBUG:websockets.server:> Connection: Upgrade
+DEBUG:websockets.server:> Sec-WebSocket-Accept: pZDo4YYi5HPIVOBbx2dsG94ITIo=
+DEBUG:websockets.server:> Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+DEBUG:websockets.server:> Server: Python/3.10 websockets/14.1
+DEBUG:websockets.server:= connection is OPEN
+INFO:websockets.server:connection open
+ERROR:__main__:Error handling client: 'coroutine' object has no attribute 'decode'
+INFO:__main__:Client disconnected.
+ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/websockets/asyncio/server.py", line 373, in conn_handler
+    await self.handler(connection)
+TypeError: object NoneType can't be used in 'await' expression
+DEBUG:websockets.server:> CLOSE 1011 (internal error) [2 bytes]
+DEBUG:websockets.server:= connection is CLOSING
+DEBUG:websockets.server:= connection is CONNECTING
+DEBUG:websockets.server:< GET / HTTP/1.1
+DEBUG:websockets.server:< Host: 127.0.0.1:1234
+DEBUG:websockets.server:< Upgrade: websocket
+DEBUG:websockets.server:< Connection: Upgrade
+DEBUG:websockets.server:< Sec-WebSocket-Key: bGUmZ8qrgfEgPpUMswTC9A==
+DEBUG:websockets.server:< Sec-WebSocket-Version: 13
+DEBUG:websockets.server:< Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+DEBUG:websockets.server:< User-Agent: Python/3.10 websockets/14.1
+DEBUG:websockets.server:> HTTP/1.1 101 Switching Protocols
+DEBUG:websockets.server:> Date: Fri, 15 Nov 2024 10:35:17 GMT
+DEBUG:websockets.server:> Upgrade: websocket
+DEBUG:websockets.server:> Connection: Upgrade
+DEBUG:websockets.server:> Sec-WebSocket-Accept: 1o5kit4yJaPc5fSSLKjmISiYc2U=
+DEBUG:websockets.server:> Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+DEBUG:websockets.server:> Server: Python/3.10 websockets/14.1
+DEBUG:websockets.server:= connection is OPEN
+INFO:websockets.server:connection open
+ERROR:__main__:Error handling client: 'coroutine' object has no attribute 'decode'
+INFO:__main__:Client disconnected.
+ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/websockets/asyncio/server.py", line 373, in conn_handler
+    await self.handler(connection)
+TypeError: object NoneType can't be used in 'await' expression
+DEBUG:websockets.server:> CLOSE 1011 (internal error) [2 bytes]
+DEBUG:websockets.server:= connection is CLOSING
+DEBUG:websockets.server:< TEXT 'teste: go' [9 bytes]
+DEBUG:websockets.server:< EOF
+DEBUG:websockets.server:> EOF
+DEBUG:websockets.server:< EOF
+DEBUG:websockets.server:= connection is CLOSED
+DEBUG:websockets.server:< TEXT 'teste: frfrf' [12 bytes]
+DEBUG:websockets.server:< EOF
+DEBUG:websockets.server:> EOF
+DEBUG:websockets.server:< EOF
+DEBUG:websockets.server:= connection is CLOSED
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:websockets.server:server listening on 0.0.0.0:1234
+INFO:__main__:Accepted connection from ('172.19.0.1', 63652)
+INFO:__main__:Client disconnected.
+DEBUG:websockets.server:= connection is CONNECTING
+DEBUG:websockets.server:< GET / HTTP/1.1
+DEBUG:websockets.server:< Host: 127.0.0.1:1234
+DEBUG:websockets.server:< Upgrade: websocket
+DEBUG:websockets.server:< Connection: Upgrade
+DEBUG:websockets.server:< Sec-WebSocket-Key: oZkkHPrr0RfbHirXwmPHVg==
+DEBUG:websockets.server:< Sec-WebSocket-Version: 13
+DEBUG:websockets.server:< Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+DEBUG:websockets.server:< User-Agent: Python/3.10 websockets/14.1
+DEBUG:websockets.server:> HTTP/1.1 101 Switching Protocols
+DEBUG:websockets.server:> Date: Fri, 15 Nov 2024 10:37:00 GMT
+DEBUG:websockets.server:> Upgrade: websocket
+DEBUG:websockets.server:> Connection: Upgrade
+DEBUG:websockets.server:> Sec-WebSocket-Accept: Mi/sZeKIHT9fErDehUJ5cQXjwLU=
+DEBUG:websockets.server:> Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+DEBUG:websockets.server:> Server: Python/3.10 websockets/14.1
+DEBUG:websockets.server:= connection is OPEN
+INFO:websockets.server:connection open
+ERROR:__main__:Error handling client: 'coroutine' object has no attribute 'decode'
+INFO:__main__:Client disconnected.
+ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/websockets/asyncio/server.py", line 373, in conn_handler
+    await self.handler(connection)
+TypeError: object NoneType can't be used in 'await' expression
+DEBUG:websockets.server:> CLOSE 1011 (internal error) [2 bytes]
+DEBUG:websockets.server:= connection is CLOSING
+DEBUG:websockets.server:= connection is CONNECTING
+DEBUG:websockets.server:< GET / HTTP/1.1
+DEBUG:websockets.server:< Host: 127.0.0.1:1234
+DEBUG:websockets.server:< Upgrade: websocket
+DEBUG:websockets.server:< Connection: Upgrade
+DEBUG:websockets.server:< Sec-WebSocket-Key: Cd1C5XRIqjCEFe7Cdt1KcA==
+DEBUG:websockets.server:< Sec-WebSocket-Version: 13
+DEBUG:websockets.server:< Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+DEBUG:websockets.server:< User-Agent: Python/3.10 websockets/14.1
+DEBUG:websockets.server:> HTTP/1.1 101 Switching Protocols
+DEBUG:websockets.server:> Date: Fri, 15 Nov 2024 10:37:03 GMT
+DEBUG:websockets.server:> Upgrade: websocket
+DEBUG:websockets.server:> Connection: Upgrade
+DEBUG:websockets.server:> Sec-WebSocket-Accept: Fs9jBVb2SSQiWI1eF0xhp9mUpgU=
+DEBUG:websockets.server:> Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+DEBUG:websockets.server:> Server: Python/3.10 websockets/14.1
+DEBUG:websockets.server:= connection is OPEN
+INFO:websockets.server:connection open
+ERROR:__main__:Error handling client: 'coroutine' object has no attribute 'decode'
+INFO:__main__:Client disconnected.
+ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/websockets/asyncio/server.py", line 373, in conn_handler
+    await self.handler(connection)
+TypeError: object NoneType can't be used in 'await' expression
+DEBUG:websockets.server:> CLOSE 1011 (internal error) [2 bytes]
+DEBUG:websockets.server:= connection is CLOSING
+DEBUG:websockets.server:< TEXT 'test: grgr' [10 bytes]
+DEBUG:websockets.server:< EOF
+DEBUG:websockets.server:> EOF
+DEBUG:websockets.server:< EOF
+DEBUG:websockets.server:= connection is CLOSED
+DEBUG:websockets.server:< EOF
+DEBUG:websockets.server:> EOF
+DEBUG:websockets.server:< EOF
+DEBUG:websockets.server:= connection is CLOSED
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 36420)
+INFO:__main__:Accepted connection from ('127.0.0.1', 60446)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 3
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 7
+INFO:__main__:Read from file executed successfully; lines = ['tregtrgr', '', '', 'ufhfrhfreifiref', 'tege']
+INFO:__main__:Sending read response: tregtrgr
+
+
+ufhfrhfreifiref
+tege
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client disconnected.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 36404)
+INFO:__main__:Accepted connection from ('127.0.0.1', 36420)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 6
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 2
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 1
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['gureugier', 'fhrjfr', 'freifiref', 'tege', 'eeeee']
+INFO:__main__:Sending read response: gureugier
+fhrjfr
+freifiref
+tege
+eeeee
+INFO:__main__:Client disconnected.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 55846)
+INFO:__main__:Accepted connection from ('127.0.0.1', 56532)
+INFO:__main__:Accepted connection from ('127.0.0.1', 56538)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 2
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 2
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 2
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['rgrgr', 'teste', 'gt', 'r', 'freifiref']
+INFO:__main__:Sending read response: rgrgr
+teste
+gt
+r
+freifiref
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 5
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 5
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client disconnected.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 57306)
+INFO:__main__:Accepted connection from ('127.0.0.1', 57308)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 1
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 2
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['test', '', 'teste', 'gt', 'r']
+INFO:__main__:Sending read response: test
+
+teste
+gt
+r
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 2
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 4
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['test', '', 'teste', 'gt', 'r', 'freifiref']
+INFO:__main__:Sending read response: test
+
+teste
+gt
+r
+freifiref
+INFO:__main__:Accepted connection from ('127.0.0.1', 51126)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 2
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 7
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 6
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['test', '', 'teste', 'gt', 'r']
+INFO:__main__:Sending read response: test
+
+teste
+gt
+r
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Client disconnected.
+INFO:__main__:Client disconnected.
+INFO:__main__:Client disconnected.
+INFO:__main__:File server is listening for connections on 0.0.0.0:1235...
+INFO:__main__:Accepted connection from ('127.0.0.1', 58340)
+INFO:__main__:Accepted connection from ('127.0.0.1', 32944)
+INFO:__main__:Accepted connection from ('127.0.0.1', 32952)
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 6
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 6
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 4
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:All write operations completed. Setting write_event.
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['test', 'testete\x1b[5~', 'freifiref', 'tege', 'eeeee']
+INFO:__main__:Sending read response: test
+testete[5~
+freifiref
+tege
+eeeee
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 4
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 3
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 2
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:All write operations completed. Setting write_event.
+INFO:__main__:Write to file function executed successfully.
+INFO:__main__:Read from file executed successfully; lines = ['test', 'testete\x1b[5~', 'freifiref', 'tege']
+INFO:__main__:Sending read response: test
+testete[5~
+freifiref
+tege
+INFO:__main__:Client requested to read from the file.
+INFO:__main__:Read file sleep time: 2
+INFO:__main__:Read from file executed successfully; lines = ['test', 'testete\x1b[5~', 'freifiref', 'tege', 'eeeee']
+INFO:__main__:Sending read response: test
+testete[5~
+freifiref
+tege
+eeeee
+INFO:__main__:Client requested to write to the file.
+INFO:__main__:Write file sleep time: 2
+INFO:__main__:All write operations completed. Setting write_event.
+INFO:__main__:Write to file function executed successfully.
